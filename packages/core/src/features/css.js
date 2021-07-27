@@ -27,6 +27,7 @@ const createComponentFunctionMap = createMemo()
 export const createComponentFunction = (/** @type {Config} */ config, /** @type {SheetGroup} */ sheet) =>
 	createComponentFunctionMap(config, () => (...args) => {
 		/** @type {string | Function} Component type, which may be a function or a string. */
+		const componentName = !!args[2] && typeof args[2] === 'string' ? args[2] : null
 		let componentType = null
 
 		/** @type {Set<Composer>} Composers. */
@@ -56,7 +57,7 @@ export const createComponentFunction = (/** @type {Config} */ config, /** @type 
 						}
 					// otherwise, add a new composer to this component
 					else if (!('$$typeof' in arg)) {
-						const composer = createComposer(arg, config)
+						const composer = createComposer({componentName, ...arg}, config)
 
 						composers.add(composer)
 					}
@@ -64,7 +65,8 @@ export const createComponentFunction = (/** @type {Config} */ config, /** @type 
 					break
 
 				case 'string':
-					componentType = arg
+					if (!componentType)
+						componentType = arg
 			}
 		}
 
@@ -76,9 +78,10 @@ export const createComponentFunction = (/** @type {Config} */ config, /** @type 
 	})
 
 /** Creates a composer from a configuration object. */
-const createComposer = (/** @type {InitComposer} */ { variants: initSingularVariants, compoundVariants: initCompoundVariants, defaultVariants: initDefaultVariants, ...style }, /** @type {Config} */ config) => {
+const createComposer = (/** @type {InitComposer} */ { variants: initSingularVariants, compoundVariants: initCompoundVariants, defaultVariants: initDefaultVariants, componentName, ...style }, /** @type {Config} */ config) => {
 	/** @type {string} Composer Unique Identifier. @see `{CONFIG_PREFIX}-?c-{STYLE_HASH}` */
-	const className = `${toTailDashed(config.prefix)}c-${toHash(style)}`
+	const hash = !!componentName ? `${componentName}-${toHash(style)}` : toHash(style)
+	const className = `${toTailDashed(config.prefix)}c-${hash}`
 
 	/** @type {VariantTuple[]} */
 	const singularVariants = []

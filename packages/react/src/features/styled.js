@@ -17,6 +17,7 @@ export const createStyledFunction = ({ /** @type {Config} */ config, /** @type {
 		const css = createComponentFunction(config, sheet)
 
 		const styled = (...args) => {
+			const componentName = !!args[2] && typeof args[2] === 'string' ? args[2] : null
 			const DefaultType = getComponentType(args[0])
 
 			const cssComponent = css(...args)
@@ -36,7 +37,7 @@ export const createStyledFunction = ({ /** @type {Config} */ config, /** @type {
 			const toString = () => cssComponent.selector
 
 			styledComponent.className = cssComponent.className
-			styledComponent.displayName = `Styled.${DefaultType.displayName || DefaultType.name || DefaultType}`
+			styledComponent.displayName = `Styled.${componentName || DefaultType.displayName || DefaultType.name || DefaultType}`
 			styledComponent.selector = cssComponent.selector
 			styledComponent.type = DefaultType
 			styledComponent.toString = toString

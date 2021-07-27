@@ -22,6 +22,8 @@ export type InitComposer = {
 	defaultVariants?: {
 		[name: string]: string
 	}
+
+	componentName?: string
 } & Styling
 
 /** Composer as it has been processed. */
