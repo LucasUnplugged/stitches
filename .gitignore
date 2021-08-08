@@ -86,7 +86,8 @@ typings/
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+# Disabled for fork only
+# dist
 
 # Gatsby files
 .cache/
