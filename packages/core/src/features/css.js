@@ -27,6 +27,8 @@ const createComponentFunctionMap = createMemo()
 export const createComponentFunction = (/** @type {Config} */ config, /** @type {SheetGroup} */ sheet) =>
 	createComponentFunctionMap(config, () => (...args) => {
 		/** @type {string | Function} Component type, which may be a function or a string. */
+		const last = args.length - 1
+		const componentName = !!args[last] && typeof args[last] === 'string' ? args[last] : null
 		let componentType = null
 
 		/** @type {Set<Composer>} Composers. */
@@ -56,7 +58,7 @@ export const createComponentFunction = (/** @type {Config} */ config, /** @type 
 						}
 					// otherwise, add a new composer to this component
 					else if (!('$$typeof' in arg)) {
-						const composer = createComposer(arg, config)
+						const composer = createComposer({componentName, ...arg}, config)
 
 						composers.add(composer)
 					}
@@ -64,7 +66,8 @@ export const createComponentFunction = (/** @type {Config} */ config, /** @type 
 					break
 
 				case 'string':
-					componentType = arg
+					if (!componentType)
+						componentType = arg
 			}
 		}
 
@@ -76,9 +79,10 @@ export const createComponentFunction = (/** @type {Config} */ config, /** @type 
 	})
 
 /** Creates a composer from a configuration object. */
-const createComposer = (/** @type {InitComposer} */ { variants: initSingularVariants, compoundVariants: initCompoundVariants, defaultVariants: initDefaultVariants, ...style }, /** @type {Config} */ config) => {
+const createComposer = (/** @type {InitComposer} */ { variants: initSingularVariants, compoundVariants: initCompoundVariants, defaultVariants: initDefaultVariants, componentName, ...style }, /** @type {Config} */ config) => {
 	/** @type {string} Composer Unique Identifier. @see `{CONFIG_PREFIX}-?c-{STYLE_HASH}` */
-	const className = `${toTailDashed(config.prefix)}c-${toHash(style)}`
+	const hash = !!componentName ? `${componentName}-${toHash(style)}` : toHash(style)
+	const className = `${toTailDashed(config.prefix)}c-${hash}`
 
 	/** @type {VariantTuple[]} */
 	const singularVariants = []
@@ -147,13 +151,13 @@ const createRenderer = (
 	/** @type {import('../createSheet').SheetGroup} */ sheet
 ) => {
 	const [
-		initialClassName,
+		latestClassName,
 		baseClassNames,
 		prefilledVariants,
 		undefinedVariants
 	] = getPreparedDataFromComposers(composers)
 
-	const selector = `.${initialClassName}`
+	const selector = `.${latestClassName}`
 
 	/** @type {Render} */
 	const render = (props) => {
@@ -254,7 +258,7 @@ const createRenderer = (
 		// apply css property styles
 		if (typeof css === 'object' && css) {
 			/** @type {string} Inline Class Unique Identifier. @see `{COMPOSER_UUID}-i{VARIANT_UUID}-css` */
-			const iClass = `${initialClassName}-i${toHash(css)}-css`
+			const iClass = `${latestClassName}-i${toHash(css)}-css`
 
 			classSet.add(iClass)
 
@@ -285,13 +289,13 @@ const createRenderer = (
 	}
 
 	const toString = () => {
-		if (!sheet.rules.styled.cache.has(initialClassName)) render()
-		return initialClassName
+		if (!sheet.rules.styled.cache.has(latestClassName)) render()
+		return latestClassName
 	}
 
 	return define(render, {
 		type,
-		className: initialClassName,
+		className: latestClassName,
 		selector,
 		[$$composers]: composers,
 		toString,
@@ -301,7 +305,7 @@ const createRenderer = (
 /** Returns useful data that can be known before rendering. */
 const getPreparedDataFromComposers = (/** @type {Set<Composer>} */ composers) => {
 	/** Class name of the first composer. */
-	let initialClassName = ''
+	let latestClassName = ''
 
 	/** @type {string[]} Combined class names for all composers. */
 	const combinedClassNames = []
@@ -313,7 +317,7 @@ const getPreparedDataFromComposers = (/** @type {Set<Composer>} */ composers) =>
 	const combinedUndefinedVariants = []
 
 	for (const [className, , , , prefilledVariants, undefinedVariants] of composers) {
-		if (initialClassName === '') initialClassName = className
+		latestClassName = className
 
 		combinedClassNames.push(className)
 
@@ -327,7 +331,7 @@ const getPreparedDataFromComposers = (/** @type {Set<Composer>} */ composers) =>
 
 	/** @type {[string, string[], PrefilledVariants, Set<UndefinedVariants>]} */
 	const preparedData = [
-		initialClassName,
+		latestClassName,
 		combinedClassNames,
 		combinedPrefilledVariants,
 		new Set(combinedUndefinedVariants)

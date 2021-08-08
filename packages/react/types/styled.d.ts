@@ -182,6 +182,7 @@ export type StyledInstance<Medias extends TMedias = TMedias, Theme extends TThem
 						)[]
 					}
 		),
+		componentName?: string,
 	): // prettier-ignore
 	E extends string
 		// jsx elements
