@@ -2,6 +2,35 @@
   <img alt="stitches" src="https://user-images.githubusercontent.com/372831/112011920-03e21400-8b29-11eb-9c9a-4e14d5a1f575.png" />
 </a>
 
+# Fork of Stitches [Temporary]
+
+## Purpose
+
+This fork addresses some issues that affect debugging, composition, and nesting of Stitches-styled components ([#650 - Friendly Class Names](https://github.com/modulz/stitches/issues/650), [#675 - Composition](https://github.com/modulz/stitches/issues/675), and [#690 - Specificity Conflicts](https://github.com/modulz/stitches/issues/690)).
+
+## Installation
+
+Until these fixes get merged into the original Stitches, you can install a particular version of this fork (e.g., `v0.2.3`) via:
+
+```
+npm install 'https://gitpkg.now.sh/LucasUnplugged/stitches/packages/react?v0.2.3'
+```
+Or...
+```
+yarn add 'https://gitpkg.now.sh/LucasUnplugged/stitches/packages/react?v0.2.3'
+```
+**NOTE**: Replace `react` with `core`, if not using React; and `v0.2.3` with the latest version of this fork.
+
+## Version Correlation
+
+The version numbers of this fork correspond to the same version from the original, but with the above fixes added (without a version bump). I decided against a version bump so it would be easy to track if this fork is behind the original.
+
+
+---
+
+_Original Stitches README.md..._
+
+
 # Stitches
 
 ## Style your components with confidence
