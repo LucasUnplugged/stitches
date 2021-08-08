@@ -27,7 +27,8 @@ const createComponentFunctionMap = createMemo()
 export const createComponentFunction = (/** @type {Config} */ config, /** @type {SheetGroup} */ sheet) =>
 	createComponentFunctionMap(config, () => (...args) => {
 		/** @type {string | Function} Component type, which may be a function or a string. */
-		const componentName = !!args[2] && typeof args[2] === 'string' ? args[2] : null
+		const last = args.length - 1
+		const componentName = !!args[last] && typeof args[last] === 'string' ? args[last] : null
 		let componentType = null
 
 		/** @type {Set<Composer>} Composers. */
