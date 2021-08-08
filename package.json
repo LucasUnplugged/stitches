@@ -20,7 +20,7 @@
     "release": "lerna publish --force-publish",
     "release:canary": "npm run prerelease && lerna publish prerelease --force-publish",
     "release:pack": "npm run prerelease && lerna exec -- npm pack",
-    "postinstall": "lerna bootstrap --use-workspaces",
+    "postinstall": "cd ./node_modules/@stitches && npm bootstrap && npm run build",
     "test": "node .bin/test.js",
     "test:coverage": "node .bin/test-coverage.js .bin/test.js",
     "test:watch": "node .bin/test.js --watch"
