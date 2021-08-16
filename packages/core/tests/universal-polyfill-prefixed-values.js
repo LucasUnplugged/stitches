@@ -1,31 +1,31 @@
-import { createCss } from '../src/index.js'
+import { createStitches } from '../src/index.js'
 
 describe('Polyfill prefixed values', () => {
 	test('width:stretch', () => {
-		const { global, toString } = createCss()
+		const { globalCss, toString } = createStitches()
 
-		global({
+		globalCss({
 			'.gro': {
 				width: 'stretch',
 			},
 		})()
 
 		expect(toString()).toBe(
-			`--stitches{--:1 coIeei}@media{.gro{width:-moz-available;width:-webkit-fill-available}}`
+			`--sxs{--sxs:1 coIeei}@media{.gro{width:-moz-available;width:-webkit-fill-available}}`
 		)
 	})
 
 	test('width:fit-content', () => {
-		const { global, toString } = createCss()
+		const { globalCss, toString } = createStitches()
 
-		global({
+		globalCss({
 			'.fit': {
 				width: 'fit-content',
 			},
 		})()
 
 		expect(toString()).toBe(
-			`--stitches{--:1 gZsLvv}@media{.fit{width:-moz-fit-content;width:fit-content}}`
+			`--sxs{--sxs:1 gZsLvv}@media{.fit{width:-moz-fit-content;width:fit-content}}`
 		)
 	})
 }) // prettier-ignore

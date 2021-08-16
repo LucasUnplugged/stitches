@@ -1,21 +1,27 @@
 {
   "name": "@stitches/stringify",
-  "version": "0.2.3",
+  "version": "1.0.0-canary.10",
   "description": "Converts an object into CSS",
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "typings": "types/index.d.ts",
-  "jsdelivr": "dist/index.iife.js",
-  "unpkg": "dist/index.iife.js",
+  "jsdelivr": "dist/index.global.js",
+  "unpkg": "dist/index.global.js",
   "exports": {
-    "require": "./dist/index.cjs",
-    "import": "./dist/index.mjs",
-    "default": "./dist/index.mjs"
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./types/index.d.ts"
+    },
+    "./global": "./dist/index.global.js"
   },
   "files": [
-    "dist",
-    "types"
+    "dist/*.cjs",
+    "dist/*.js",
+    "dist/*.map",
+    "dist/*.mjs",
+    "types/*.d.ts"
   ],
   "sideEffects": false,
   "license": "MIT",

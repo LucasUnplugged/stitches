@@ -1,8 +1,8 @@
-import { createCss } from '../src/index.js'
+import { createStitches } from '../src/index.js'
 
 describe('Issue #519', () => {
 	test('locally scoped token works 1 time', () => {
-		const { css, getCssString } = createCss({ prefix: 'fusion' })
+		const { css, getCssText } = createStitches({ prefix: 'fusion' })
 
 		css({
 			$$syntax: 'red',
@@ -12,8 +12,8 @@ describe('Issue #519', () => {
 			},
 		})()
 
-		expect(getCssString()).toBe(
-			`--stitches{--:2 fusion-c-fjkySu}` +
+		expect(getCssText()).toBe(
+			`--sxs{--sxs:2 fusion-c-fjkySu}` +
 			`@media{` +
 				`.fusion-c-fjkySu{--fusion--syntax:red}` +
 				`.fusion-c-fjkySu h1{color:var(--fusion--syntax)}` +
@@ -22,7 +22,7 @@ describe('Issue #519', () => {
 	})
 
 	test('locally scoped prefix-free token works 1 time', () => {
-		const { css, getCssString } = createCss()
+		const { css, getCssText } = createStitches()
 
 		css({
 			$$syntax: 'red',
@@ -32,8 +32,8 @@ describe('Issue #519', () => {
 			},
 		})()
 
-		expect(getCssString()).toBe(
-			`--stitches{--:2 c-fjkySu}` +
+		expect(getCssText()).toBe(
+			`--sxs{--sxs:2 c-fjkySu}` +
 			`@media{` +
 				`.c-fjkySu{---syntax:red}` +
 				`.c-fjkySu h1{color:var(---syntax)}` +
@@ -42,7 +42,7 @@ describe('Issue #519', () => {
 	})
 
 	test('locally scoped token works 2 times', () => {
-		const { css, getCssString } = createCss({ prefix: 'fusion' })
+		const { css, getCssText } = createStitches({ prefix: 'fusion' })
 
 		css({
 			$$syntax: 'red',
@@ -56,8 +56,8 @@ describe('Issue #519', () => {
 			},
 		})()
 
-		expect(getCssString()).toBe(
-			`--stitches{--:2 fusion-c-lkpaIy}` +
+		expect(getCssText()).toBe(
+			`--sxs{--sxs:2 fusion-c-lkpaIy}` +
 			`@media{` +
 				`.fusion-c-lkpaIy{--fusion--syntax:red}` +
 				`.fusion-c-lkpaIy h1{color:var(--fusion--syntax)}` +
@@ -67,7 +67,7 @@ describe('Issue #519', () => {
 	})
 
 	test('locally scoped prefix-free token works 2 times', () => {
-		const { css, getCssString } = createCss()
+		const { css, getCssText } = createStitches()
 
 		css({
 			$$syntax: 'red',
@@ -81,8 +81,8 @@ describe('Issue #519', () => {
 			},
 		})()
 
-		expect(getCssString()).toBe(
-			`--stitches{--:2 c-lkpaIy}` +
+		expect(getCssText()).toBe(
+			`--sxs{--sxs:2 c-lkpaIy}` +
 			`@media{` +
 				`.c-lkpaIy{---syntax:red}` +
 				`.c-lkpaIy h1{color:var(---syntax)}` +
@@ -92,7 +92,7 @@ describe('Issue #519', () => {
 	})
 
 	test('locally scoped token works 3 times', () => {
-		const { css, getCssString } = createCss({ prefix: 'fusion' })
+		const { css, getCssText } = createStitches({ prefix: 'fusion' })
 
 		css({
 			$$syntax: 'red',
@@ -110,8 +110,8 @@ describe('Issue #519', () => {
 			},
 		})()
 
-		expect(getCssString()).toBe(
-			`--stitches{--:2 fusion-c-kbkiiL}` +
+		expect(getCssText()).toBe(
+			`--sxs{--sxs:2 fusion-c-kbkiiL}` +
 			`@media{` +
 				`.fusion-c-kbkiiL{--fusion--syntax:red}` +
 				`.fusion-c-kbkiiL h1{color:var(--fusion--syntax)}` +
@@ -122,7 +122,7 @@ describe('Issue #519', () => {
 	})
 
 	test('locally scoped prefix-free token works 3 times', () => {
-		const { css, getCssString } = createCss()
+		const { css, getCssText } = createStitches()
 
 		css({
 			$$syntax: 'red',
@@ -140,8 +140,8 @@ describe('Issue #519', () => {
 			},
 		})()
 
-		expect(getCssString()).toBe(
-			`--stitches{--:2 c-kbkiiL}` +
+		expect(getCssText()).toBe(
+			`--sxs{--sxs:2 c-kbkiiL}` +
 			`@media{` +
 				`.c-kbkiiL{---syntax:red}` +
 				`.c-kbkiiL h1{color:var(---syntax)}` +

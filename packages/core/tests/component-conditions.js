@@ -1,8 +1,8 @@
-import { createCss } from '../src/index.js'
+import { createStitches } from '../src/index.js'
 
 describe('Component Medias', () => {
 	test('Authors can define medias applied to components', () => {
-		const { css, toString } = createCss({
+		const { css, toString } = createStitches({
 			media: {
 				mediumUp: '(width >= 768px)',
 			},
@@ -16,7 +16,7 @@ describe('Component Medias', () => {
 		})()
 
 		expect(toString()).toBe(
-			`--stitches{--:2 c-jEGvho}@media{` +
+			`--sxs{--sxs:2 c-jEGvho}@media{` +
 				`.c-jEGvho{font-size:16px}` +
 				`@media (min-width:768px){.c-jEGvho{font-size:24px}}` +
 			`}`,

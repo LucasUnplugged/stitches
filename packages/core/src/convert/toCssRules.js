@@ -7,8 +7,8 @@ import { toSizingValue } from './toSizingValue.js'
 import { toTailDashed } from './toTailDashed.js'
 import { toTokenizedValue } from './toTokenizedValue.js'
 
-/** @typedef {import('../createCss.js').Config} Config */
-/** @typedef {import('../createCss.js').Style} Style */
+/** @typedef {import('../createStitches.js').Config} Config */
+/** @typedef {import('../createStitches.js').Style} Style */
 
 /** Comma matcher outside rounded brackets. */
 const comma = /\s*,\s*(?![^()]*\))/
@@ -65,7 +65,7 @@ export const toCssRules = (
 						if (util !== lastUtil) {
 							lastUtil = util
 
-							each(util(config)(data))
+							each(util(data))
 
 							lastUtil = null
 
@@ -125,7 +125,7 @@ export const toCssRules = (
 								: String(data)
 							// replace tokens with stringified primitive values
 							: toTokenizedValue(
-								toSizingValue(camelName, data),
+								toSizingValue(camelName, data == null ? '' : data),
 								config.prefix,
 								config.themeMap[camelName]
 							)

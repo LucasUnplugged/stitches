@@ -1,8 +1,8 @@
-import { createCss } from '../src/index.js'
+import { createStitches } from '../src/index.js'
 
 describe('Serialization', () => {
-	const sheet = createCss()
-	const { css, getCssString, toString, theme } = sheet
+	const sheet = createStitches()
+	const { css, getCssText, toString, createTheme } = sheet
 
 	const myComponent = css({
 		all: 'unset',
@@ -12,7 +12,7 @@ describe('Serialization', () => {
 	})
 	const myComponentClassName = 'c-cLikna'
 
-	const myTheme = theme({
+	const myTheme = createTheme({
 		colors: {
 			blue: 'dodgerblue',
 		},
@@ -46,7 +46,7 @@ describe('Serialization', () => {
 		expect(myTheme.selector).toBe(`.${myThemeClassName}`)
 	})
 
-	const sheetCssText = `--stitches{--:0 t-jPkpUS}@media{.${myThemeClassName}{--colors-blue:dodgerblue}}--stitches{--:2 c-cLikna}@media{.${myComponentClassName}{all:unset;font:inherit;margin:0;padding:0.5em 1em}}`
+	const sheetCssText = `--sxs{--sxs:0 t-jPkpUS}@media{.${myThemeClassName}{--colors-blue:dodgerblue}}--sxs{--sxs:2 c-cLikna}@media{.${myComponentClassName}{all:unset;font:inherit;margin:0;padding:0.5em 1em}}`
 
 	test('Sheets implicitly return their cssText', () => {
 		expect(String(sheet)).toBe(sheetCssText)
@@ -55,7 +55,7 @@ describe('Serialization', () => {
 	})
 
 	test('Sheets can explicitly return their cssText', () => {
-		expect(getCssString()).toBe(sheetCssText)
+		expect(getCssText()).toBe(sheetCssText)
 		expect(toString()).toBe(sheetCssText)
 	})
 })

@@ -1,10 +1,10 @@
-import { createCss } from '../src/index.js'
+import { createStitches } from '../src/index.js'
 
 describe('Logical Properties', () => {
 	test('marginBlock', () => {
-		const { global, toString } = createCss()
+		const { globalCss, toString } = createStitches()
 
-		global({
+		globalCss({
 			'x-element': {
 				marginBlock: 0,
 			},
@@ -17,7 +17,7 @@ describe('Logical Properties', () => {
 		})()
 
 		expect(toString()).toBe(
-			`--stitches{--:1 IvBLl}@media{` +
+			`--sxs{--sxs:1 IvBLl}@media{` +
 				`x-element{margin-block-start:0;margin-block-end:0}` +
 				`y-element{margin-block-start:10px;margin-block-end:10px}` +
 				`z-element{margin-block-start:5px;margin-block-end:10px}` +
@@ -26,9 +26,9 @@ describe('Logical Properties', () => {
 	})
 
 	test('marginInline', () => {
-		const { global, toString } = createCss()
+		const { globalCss, toString } = createStitches()
 
-		global({
+		globalCss({
 			'x-element': {
 				marginInline: 0,
 			},
@@ -41,7 +41,7 @@ describe('Logical Properties', () => {
 		})()
 
 		expect(toString()).toBe(
-			`--stitches{--:1 eNPHKF}@media{` +
+			`--sxs{--sxs:1 eNPHKF}@media{` +
 				`x-element{margin-inline-start:0;margin-inline-end:0}` +
 				`y-element{margin-inline-start:10px;margin-inline-end:10px}` +
 				`z-element{margin-inline-start:5px;margin-inline-end:10px}` +
@@ -50,9 +50,9 @@ describe('Logical Properties', () => {
 	})
 
 	test('paddingBlock', () => {
-		const { global, toString } = createCss()
+		const { globalCss, toString } = createStitches()
 
-		global({
+		globalCss({
 			'x-element': {
 				paddingBlock: 0,
 			},
@@ -65,7 +65,7 @@ describe('Logical Properties', () => {
 		})()
 
 		expect(toString()).toBe(
-			`--stitches{--:1 kcHEgy}@media{` +
+			`--sxs{--sxs:1 kcHEgy}@media{` +
 				`x-element{padding-block-start:0;padding-block-end:0}` +
 				`y-element{padding-block-start:10px;padding-block-end:10px}` +
 				`z-element{padding-block-start:5px;padding-block-end:10px}` +
@@ -74,9 +74,9 @@ describe('Logical Properties', () => {
 	})
 
 	test('paddingInline', () => {
-		const { global, toString } = createCss()
+		const { globalCss, toString } = createStitches()
 
-		global({
+		globalCss({
 			'x-element': {
 				paddingInline: 0,
 			},
@@ -89,7 +89,7 @@ describe('Logical Properties', () => {
 		})()
 
 		expect(toString()).toBe(
-			`--stitches{--:1 cVrbiG}@media{` +
+			`--sxs{--sxs:1 cVrbiG}@media{` +
 				`x-element{padding-inline-start:0;padding-inline-end:0}` +
 				`y-element{padding-inline-start:10px;padding-inline-end:10px}` +
 				`z-element{padding-inline-start:5px;padding-inline-end:10px}` +

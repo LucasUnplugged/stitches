@@ -1,57 +1,57 @@
-import { createCss } from '../src/index.js'
+import { createStitches } from '../src/index.js'
 
 describe('Numeric Values', () => {
 	test('Authors can use numeric values to assign px values', () => {
-		const { global, toString } = createCss()
+		const { globalCss, toString } = createStitches()
 
 		expect(toString()).toBe('')
 
-		global({
+		globalCss({
 			body: {
 				margin: 0,
 			},
 		})()
 
-		expect(toString()).toBe(`--stitches{--:1 cSHHDh}@media{body{margin:0}}`)
+		expect(toString()).toBe(`--sxs{--sxs:1 cSHHDh}@media{body{margin:0}}`)
 
-		global({
+		globalCss({
 			body: {
 				margin: 10,
 			},
 		})()
 
-		expect(toString()).toBe(`--stitches{--:1 cSHHDh fFIrKk}@media{body{margin:0}body{margin:10px}}`)
+		expect(toString()).toBe(`--sxs{--sxs:1 cSHHDh fFIrKk}@media{body{margin:0}body{margin:10px}}`)
 	})
 
 	test('Authors can use numeric values to assign numeric values', () => {
-		const { global, toString } = createCss()
+		const { globalCss, toString } = createStitches()
 
 		expect(toString()).toBe('')
 
-		global({
+		globalCss({
 			body: {
 				lineHeight: 0,
 				width: 0,
 			},
 		})()
 
-		expect(toString()).toBe(`--stitches{--:1 bpctHq}@media{body{line-height:0;width:0}}`)
+		expect(toString()).toBe(`--sxs{--sxs:1 bpctHq}@media{body{line-height:0;width:0}}`)
 
-		global({
+		globalCss({
 			body: {
 				lineHeight: 10,
 				width: 10,
 			},
 		})()
 
-		expect(toString()).toBe(`--stitches{--:1 bpctHq cudWGu}@media{body{line-height:0;width:0}body{line-height:10;width:10px}}`)
+		expect(toString()).toBe(`--sxs{--sxs:1 bpctHq cudWGu}@media{body{line-height:0;width:0}body{line-height:10;width:10px}}`)
 	})
 
 	test('Authors can use unit-less properties as known to React', () => {
 		for (let i = 0; i <= 33; i += 11) {
-			const { global, getCssString } = createCss()
+			const { globalCss, getCssText } = createStitches()
 
-			global({
+			globalCss({
 				div: {
 					animationIterationCount: i,
 					borderImageOutset: i,
@@ -87,7 +87,7 @@ describe('Numeric Values', () => {
 				},
 			})()
 
-			const cssText = getCssString().replace(/^.+@media\{|\}$/g, '')
+			const cssText = getCssText().replace(/^.+@media\{|\}$/g, '')
 
 			expect(cssText).toBe(
 				'div' + '{' +
@@ -135,15 +135,15 @@ describe('Numeric Values', () => {
 
 		test(`Author can use the unit-only ${kebabProp} property`, () => {
 			for (let i = 0; i <= 33; i += 11) {
-				const { global, getCssString } = createCss()
+				const { globalCss, getCssText } = createStitches()
 
-				global({
+				globalCss({
 					div: {
 						[prop]: i,
 					},
 				})()
 
-				const cssText = getCssString().replace(/^.+@media\{|\}$/g, '')
+				const cssText = getCssText().replace(/^.+@media\{|\}$/g, '')
 
 				expect(cssText).toBe(
 					`div{` +

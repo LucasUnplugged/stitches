@@ -1,8 +1,8 @@
-import { createCss } from '../src/index.js'
+import { createStitches } from '../src/index.js'
 
 describe('Issue #492', () => {
 	test('Conditionally apply default variants as the @initial value', () => {
-		const { css, getCssString } = createCss()
+		const { css, getCssText } = createStitches()
 
 		const component = css({
 			variants: {
@@ -37,9 +37,9 @@ describe('Issue #492', () => {
 		)
 
 		expect(
-			getCssString()
+			getCssText()
 		).toBe(
-			`--stitches{--:3 ${variantSweetCarolineClassName}}@media{` +
+			`--sxs{--sxs:3 ${variantSweetCarolineClassName}}@media{` +
 				`.${variantSweetCarolineClassName}{--sweet-caroline:true}` +
 			`}`
 		)
@@ -58,9 +58,9 @@ describe('Issue #492', () => {
 		)
 
 		expect(
-			getCssString()
+			getCssText()
 		).toBe(
-			`--stitches{--:3 ${variantSweetCarolineClassName} ${variantResponsiveSweetDreamsClassName}}@media{` +
+			`--sxs{--sxs:3 ${variantSweetCarolineClassName} ${variantResponsiveSweetDreamsClassName}}@media{` +
 				`.${variantSweetCarolineClassName}{--sweet-caroline:true}` +
 				`@media (min-width: 640px){.${variantResponsiveSweetDreamsClassName}{--sweet-dreams:true}}` +
 			`}`
@@ -81,9 +81,9 @@ describe('Issue #492', () => {
 		)
 
 		expect(
-			getCssString()
+			getCssText()
 		).toBe(
-			`--stitches{--:3 ${variantSweetCarolineClassName} ${variantResponsiveSweetDreamsClassName} ${variantSweetDreamsClassName} ${variantResponsiveSweetCarolineClassName}}@media{` +
+			`--sxs{--sxs:3 ${variantSweetCarolineClassName} ${variantResponsiveSweetDreamsClassName} ${variantSweetDreamsClassName} ${variantResponsiveSweetCarolineClassName}}@media{` +
 				// last rendering
 				`.${variantSweetCarolineClassName}{--sweet-caroline:true}` +
 				`@media (min-width: 640px){.${variantResponsiveSweetDreamsClassName}{--sweet-dreams:true}}` +
@@ -95,7 +95,7 @@ describe('Issue #492', () => {
 	})
 
 	test('Apply apply @initial styles first', () => {
-		const { css, getCssString } = createCss()
+		const { css, getCssText } = createStitches()
 
 		const component = css({
 			'--rock': true,
@@ -130,12 +130,12 @@ describe('Issue #492', () => {
 		)
 
 		expect(
-			getCssString()
+			getCssText()
 		).toBe(
-			`--stitches{--:2 ${componentClassName}}@media{` +
+			`--sxs{--sxs:2 ${componentClassName}}@media{` +
 				`.${componentClassName}{--rock:true}` +
 			`}` +
-			`--stitches{--:3 ${variantInitialHeavyIronButterfly} ${variantMinWidth640LedZeppelin}}@media{` +
+			`--sxs{--sxs:3 ${variantInitialHeavyIronButterfly} ${variantMinWidth640LedZeppelin}}@media{` +
 				`.${variantInitialHeavyIronButterfly}{--weight-iron-butterfly:true}` +
 				`@media (min-width: 640px){.${variantMinWidth640LedZeppelin}{--weight-led-zeppelin:true}}` +
 			`}`

@@ -1,10 +1,10 @@
-import { createCss } from '../src/index.js'
+import { createStitches } from '../src/index.js'
 
 describe('emerson', () => {
 	test('lake', () => {
-		const { styled, toString } = createCss({
+		const { styled, toString } = createStitches({
 			utils: {
-				px: () => (value) => ({
+				px: (value) => ({
 					paddingLeft: value,
 					paddingRight: value,
 				}),
@@ -25,7 +25,7 @@ describe('emerson', () => {
 		}) // prettier-ignore
 
 		const cssText = (
-			`--stitches{--:3 c-PJLV-efCiES-size-1}@media{` +
+			`--sxs{--sxs:3 c-PJLV-efCiES-size-1}@media{` +
 				`.c-PJLV-efCiES-size-1{padding-left:var(--space-1);padding-right:var(--space-1)}` +
 			`}`
 		) // prettier-ignore

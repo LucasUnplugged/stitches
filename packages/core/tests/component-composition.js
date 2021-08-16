@@ -1,8 +1,8 @@
-import { createCss } from '../src/index.js'
+import { createStitches } from '../src/index.js'
 
 describe('Composition', () => {
 	test('Renders an empty component', () => {
-		const { css, toString } = createCss()
+		const { css, toString } = createStitches()
 		const generic = css()
 
 		expect(generic().props).toEqual({ className: 'PJLV' })
@@ -10,7 +10,7 @@ describe('Composition', () => {
 	})
 
 	test('Renders a component as the final composition by default', () => {
-		const { css, toString } = createCss()
+		const { css, toString } = createStitches()
 		const red = css({ color: 'red' })
 		const size14 = css({ fontSize: '14px' })
 		const bold = css({ fontWeight: 'bold' })
@@ -20,7 +20,7 @@ describe('Composition', () => {
 		expect(toString()).toBe('')
 		expect(String(title)).toBe('c-kngyIZ')
 		expect(toString()).toBe(
-			`--stitches{--:2 c-gmqXFB c-hzkWus c-cQFdVt c-kngyIZ}@media{` +
+			`--sxs{--sxs:2 c-gmqXFB c-hzkWus c-cQFdVt c-kngyIZ}@media{` +
 				`.c-gmqXFB{color:red}` +
 				`.c-hzkWus{font-size:14px}` +
 				`.c-cQFdVt{font-weight:bold}` +
@@ -30,7 +30,7 @@ describe('Composition', () => {
 	})
 
 	test('Renders a component with all compositions', () => {
-		const { css, toString } = createCss()
+		const { css, toString } = createStitches()
 		const red = css({ color: 'red' })
 		const size14 = css({ fontSize: '14px' })
 		const bold = css({ fontWeight: 'bold' })
@@ -38,7 +38,7 @@ describe('Composition', () => {
 
 		expect(title().className).toBe('c-gmqXFB c-hzkWus c-cQFdVt c-kngyIZ')
 		expect(toString()).toBe(
-			`--stitches{--:2 c-gmqXFB c-hzkWus c-cQFdVt c-kngyIZ}@media{` +
+			`--sxs{--sxs:2 c-gmqXFB c-hzkWus c-cQFdVt c-kngyIZ}@media{` +
 				`.c-gmqXFB{color:red}` +
 				`.c-hzkWus{font-size:14px}` +
 				`.c-cQFdVt{font-weight:bold}` +

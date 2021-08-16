@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as renderer from 'react-test-renderer'
-import { createCss } from '../src/index.js'
+import { createStitches } from '../src/index.js'
 
 let RenderOf = (...typeThenPropsThenChildren) => {
 	let Rendered
@@ -14,7 +14,7 @@ let RenderOf = (...typeThenPropsThenChildren) => {
 
 describe('Issue #450', () => {
 	test('Compound variants apply to composed components (basic)', () => {
-		const { styled, getCssString } = createCss()
+		const { styled, getCssText } = createStitches()
 
 		const Happy = styled('div', {
 			'--is-happy': true,
@@ -45,14 +45,14 @@ describe('Issue #450', () => {
 		)
 
 		expect(
-			getCssString()
+			getCssText()
 		).toBe(
 			// composition styles
-			`--stitches{--:2 c-fEpFmO}@media{` +
+			`--sxs{--sxs:2 c-fEpFmO}@media{` +
 				`.c-fEpFmO{--is-happy:true}` +
 			`}` +
 			// variant styles
-			`--stitches{--:3 c-fEpFmO-cfZmSQ-fulfilled-positively c-fEpFmO-FgYNE-satisfied-definitely}@media{` +
+			`--sxs{--sxs:3 c-fEpFmO-cfZmSQ-fulfilled-positively c-fEpFmO-FgYNE-satisfied-definitely}@media{` +
 				`.c-fEpFmO-cfZmSQ-fulfilled-positively{--is-fulfilled-positively:true}` +
 				`.c-fEpFmO-FgYNE-satisfied-definitely{--is-satisfied-definitely:true}` +
 			`}`
@@ -60,7 +60,7 @@ describe('Issue #450', () => {
 	})
 
 	test('Compound variants apply to composed components (complex)', () => {
-		const { styled } = createCss()
+		const { styled } = createStitches()
 
 		const Tile = styled('div', {
 			'--tile': 1,

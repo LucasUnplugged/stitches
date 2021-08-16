@@ -1,8 +1,7 @@
 import React from 'react'
 
-import { $$composers } from '../../../core/src/utility/composers.js'
+import { internal } from '../../../core/src/utility/internal.js'
 import { createMemo } from '../../../core/src/utility/createMemo.js'
-import { getComponentType } from '../utility/getComponentType.js'
 
 import { createComponentFunction } from '../../../core/src/features/css.js'
 
@@ -17,11 +16,8 @@ export const createStyledFunction = ({ /** @type {Config} */ config, /** @type {
 		const css = createComponentFunction(config, sheet)
 
 		const styled = (...args) => {
-			const last = args.length - 1
-			const componentName = !!args[last] && typeof args[last] === 'string' ? args[last] : null
-			const DefaultType = getComponentType(args[0])
-
 			const cssComponent = css(...args)
+			const DefaultType = cssComponent[internal].type
 
 			const styledComponent = React.forwardRef((props, ref) => {
 				const Type = props && props.as || DefaultType
@@ -40,9 +36,8 @@ export const createStyledFunction = ({ /** @type {Config} */ config, /** @type {
 			styledComponent.className = cssComponent.className
 			styledComponent.displayName = `Styled.${componentName || DefaultType.displayName || DefaultType.name || DefaultType}`
 			styledComponent.selector = cssComponent.selector
-			styledComponent.type = DefaultType
 			styledComponent.toString = toString
-			styledComponent[$$composers] = cssComponent[$$composers]
+			styledComponent[internal] = cssComponent[internal]
 
 			return styledComponent
 		}

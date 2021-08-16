@@ -1,8 +1,8 @@
-import { createCss } from '../src/index.js'
+import { createStitches } from '../src/index.js'
 
 describe('Empty Variants', () => {
 	test('Empty Variants', () => {
-		const { css, getCssString } = createCss()
+		const { css, getCssText } = createStitches()
 
 		css({
 			variants: {
@@ -24,11 +24,11 @@ describe('Empty Variants', () => {
 			size: { '@initial': 'xl' },
 		})
 
-		expect(getCssString()).toBe('')
+		expect(getCssText()).toBe('')
 	})
 
 	test('Empty Variants', () => {
-		const { css, getCssString } = createCss()
+		const { css, getCssText } = createStitches()
 
 		css({
 			variants: {
@@ -51,8 +51,8 @@ describe('Empty Variants', () => {
 			size: { '@initial': 'xl' },
 		})
 
-		expect(getCssString()).toBe(
-			`--stitches{--:4 c-PJLV-lhHHWD-cv}@media{` +
+		expect(getCssText()).toBe(
+			`--sxs{--sxs:4 c-PJLV-lhHHWD-cv}@media{` +
 				`.c-PJLV-lhHHWD-cv{font-size:24px;color:black}` +
 			`}`
 		)

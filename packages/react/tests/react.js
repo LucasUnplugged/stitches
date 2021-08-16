@@ -1,9 +1,9 @@
 import * as react from 'react'
 import * as renderer from 'react-test-renderer'
-import { createCss } from '../src/index.js'
+import { createStitches } from '../src/index.js'
 
 describe('React', () => {
-	const sheet = createCss()
+	const sheet = createStitches()
 
 	let wrapper = renderer.create(react.createElement(react.Fragment))
 	let Button = sheet.styled('button', {
@@ -44,7 +44,7 @@ describe('React', () => {
 		})
 
 		expect(sheet.toString()).toEqual(
-			`--stitches{--:2 c-iSEgvG}@media{` +
+			`--sxs{--sxs:2 c-iSEgvG}@media{` +
 				`.c-iSEgvG{` +
 					`background-color:gainsboro;` +
 					`border-radius:9999px;` +

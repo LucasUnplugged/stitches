@@ -1,10 +1,10 @@
 import * as React from 'react'
 import * as renderer from 'react-test-renderer'
-import { createCss } from '../src/index.js'
+import { createStitches } from '../src/index.js'
 
 describe('Issue #416: Composition versus Descendancy', () => {
 	{
-		const { styled, getCssString } = createCss()
+		const { styled, getCssText } = createStitches()
 
 		const BoxA = styled('main', {
 			variants: {
@@ -76,8 +76,8 @@ describe('Issue #416: Composition versus Descendancy', () => {
 			() => expect(boxZ.props.className).toBe(`${baselineClass} ${variantZClass}`)
 		)
 
-		test('All variant CSS is generated', () => expect(getCssString()).toBe(
-			`--stitches{--:3 c-PJLV-kgptgY-foo-bar c-PJLV-cHNUhn-foo-bar c-PJLV-vFFMz-foo-bar}@media{` +
+		test('All variant CSS is generated', () => expect(getCssText()).toBe(
+			`--sxs{--sxs:3 c-PJLV-kgptgY-foo-bar c-PJLV-cHNUhn-foo-bar c-PJLV-vFFMz-foo-bar}@media{` +
 				`.c-PJLV-kgptgY-foo-bar{--box-a:foo-bar}` +
 				`.c-PJLV-cHNUhn-foo-bar{--box-b:foo-bar}` +
 				`.c-PJLV-vFFMz-foo-bar{--box-z:foo-bar}` +

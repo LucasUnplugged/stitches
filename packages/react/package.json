@@ -1,24 +1,34 @@
 {
   "name": "@stitches/react",
-  "version": "0.2.3",
+  "version": "1.0.0-canary.10",
   "description": "The modern CSS-in-JS library",
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
-  "typings": "types/index.d.ts",
-  "jsdelivr": "dist/index.iife.js",
-  "unpkg": "dist/index.iife.js",
+  "types": "types/index.d.ts",
+  "typesVersions": {
+    ">= 4.1": {
+      "*": [
+        "types/index.d.ts"
+      ]
+    }
+  },
+  "jsdelivr": "dist/index.global.js",
+  "unpkg": "dist/index.global.js",
   "exports": {
     ".": {
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs",
       "types": "./types/index.d.ts"
-    }
+    },
+    "./global": "./dist/index.global.js"
   },
   "files": [
-    "dist",
-    "types",
-    "utils"
+    "dist/*.cjs",
+    "dist/*.js",
+    "dist/*.map",
+    "dist/*.mjs",
+    "types/*.d.ts"
   ],
   "sideEffects": false,
   "license": "MIT",

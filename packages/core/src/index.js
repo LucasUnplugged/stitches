@@ -1,9 +1,10 @@
-import { createCss } from './createCss.js'
-import { defaultThemeMap } from './default/defaultThemeMap.js'
 import { getCachedConfig } from './utility/getCachedConfig.js'
 
-const css = (...args) => getCachedConfig().css(...args)
-const global = (...args) => getCachedConfig().global(...args)
-const keyframes = (...args) => getCachedConfig().keyframes(...args)
+export { createStitches } from './createStitches.js'
+export { defaultThemeMap } from './default/defaultThemeMap.js'
 
-export { createCss, css, global, keyframes, defaultThemeMap }
+export const createTheme = (...args) => getCachedConfig().createTheme(...args)
+export const globalCss = (...args) => getCachedConfig().globalCss(...args)
+export const keyframes = (...args) => getCachedConfig().keyframes(...args)
+
+export const css = (...args) => getCachedConfig().css(...args)

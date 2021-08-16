@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as renderer from 'react-test-renderer'
-import { createCss } from '../src/index.js'
+import { createStitches } from '../src/index.js'
 
 let RenderOf = (...args) => {
 	let Rendered
@@ -26,7 +26,7 @@ let RenderOf = (...args) => {
 
 describe('Issue #555', () => {
 	test('an element accepts styles via className prop', () => {
-		const { css, toString } = createCss()
+		const { css, toString } = createStitches()
 
 		const el = css({ color: "dodgerblue" })
 
@@ -40,11 +40,11 @@ describe('Issue #555', () => {
 			children: null,
 		})
 
-		expect(toString()).toBe(`--stitches{--:2 c-jEKtXH}@media{.c-jEKtXH{color:dodgerblue}}`)
+		expect(toString()).toBe(`--sxs{--sxs:2 c-jEKtXH}@media{.c-jEKtXH{color:dodgerblue}}`)
 	})
 
 	test('an element accepts styles via className prop', () => {
-		const { css, styled, toString } = createCss()
+		const { css, styled, toString } = createStitches()
 
 		const el = css({ color: "dodgerblue" })
 		const Box = styled('div', {})
@@ -59,6 +59,6 @@ describe('Issue #555', () => {
 			children: null,
 		})
 
-		expect(toString()).toBe(`--stitches{--:2 c-jEKtXH c-PJLV}@media{.c-jEKtXH{color:dodgerblue}}`)
+		expect(toString()).toBe(`--sxs{--sxs:2 c-jEKtXH c-PJLV}@media{.c-jEKtXH{color:dodgerblue}}`)
 	})
 }) // prettier-ignore
