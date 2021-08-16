@@ -1,6 +1,6 @@
 export interface ScaleValue {
 	token: number | string
-	value: number | string
+	value: number | string | symbol
 	scale: string
 	prefix: string
 }
@@ -10,7 +10,7 @@ export interface Token<
 	NameType extends number | string = string,
 
 	/** Token value. */
-	ValueType extends number | string = string,
+	ValueType extends number | string | symbol = string,
 
 	/** Token scale. */
 	ScaleType extends string | void = void,
