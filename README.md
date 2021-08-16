@@ -6,20 +6,20 @@
 
 ## Purpose
 
-This fork addresses some issues that affect debugging, composition, and nesting of Stitches-styled components ([#650 - Friendly Class Names](https://github.com/modulz/stitches/issues/650), [#675 - Composition](https://github.com/modulz/stitches/issues/675), and [#690 - Specificity Conflicts](https://github.com/modulz/stitches/issues/690)).
+This fork add [friendly class names](https://github.com/modulz/stitches/issues/650) to stitches.
 
 ## Installation
 
-Until these fixes get merged into the original Stitches, you can install a particular version of this fork (e.g., `v0.2.3`) via:
+Until these improvement gets merged into the original Stitches (if it ever does), you can install a particular version of this fork (e.g., `v1.0.0-canary.10`) via:
 
 ```
-npm install 'https://gitpkg.now.sh/LucasUnplugged/stitches/packages/react?v0.2.3'
+npm install 'https://gitpkg.now.sh/LucasUnplugged/stitches/packages/react?v1.0.0-canary.10'
 ```
 Or...
 ```
-yarn add 'https://gitpkg.now.sh/LucasUnplugged/stitches/packages/react?v0.2.3'
+yarn add 'https://gitpkg.now.sh/LucasUnplugged/stitches/packages/react?v1.0.0-canary.10'
 ```
-**NOTE**: Replace `react` with `core`, if not using React; and `v0.2.3` with the latest version of this fork.
+**NOTE**: Replace `react` with `core`, if not using React; and `v1.0.0-canary.10` with the latest version of this fork.
 
 ## Version Correlation
 

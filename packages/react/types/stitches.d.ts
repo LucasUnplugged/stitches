@@ -153,6 +153,8 @@ export default interface Stitches<
 								}
 							: Util.WideObject
 						)
+
+						componentName?: string
 					} & {
 						[K2 in keyof Composers[K]]: K2 extends 'compoundVariants' | 'defaultVariants' | 'variants'
 							? unknown

@@ -16,6 +16,8 @@ export const createStyledFunction = ({ /** @type {Config} */ config, /** @type {
 		const css = createComponentFunction(config, sheet)
 
 		const styled = (...args) => {
+			const last = args.length - 1
+			const componentName = typeof args[last] === 'string' ? args[last] : null
 			const cssComponent = css(...args)
 			const DefaultType = cssComponent[internal].type
 
