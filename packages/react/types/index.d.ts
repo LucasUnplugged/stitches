@@ -40,7 +40,11 @@ export type PropertyValue<K extends keyof CSSUtil.CSSProperties> = { readonly [C
 export type ScaleValue<K> = { readonly [CSSUtil.$$ScaleValue]: K }
 
 /** Returns a type that suggests variants from a component as possible prop values. */
-type StyledComponentType = StyledComponent.StyledComponent<StyledComponent.$$StyledComponentType, StyledComponent.$$StyledComponentProps, StyledComponent.$$StyledComponentMedia>
+type StyledComponentType = {
+	[k in StyledComponent.$$StyledComponentProps]?: any
+} & {
+	[k in StyledComponent.$$StyledComponentMedia]?: any
+}
 export type VariantProps<Component extends StyledComponentType> = StyledComponent.TransformProps<Component[StyledComponent.$$StyledComponentProps], Component[StyledComponent.$$StyledComponentMedia]>
 
 /** Map of CSS properties to token scales. */
